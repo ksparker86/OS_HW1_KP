@@ -1,0 +1,10 @@
+2.4 Questions:
+1. When you press the power button on the computer, the first thing the CPU does is find the location of the BIOS(Basic Input Output System), also known as firmware, in Read-Only Memory. The first step when the BIOS starts running is to POST(Power-On Self-Test). This test ensures that all memory modules and external devices are accounted for, clock and fan speeds are set, and all hardware is functioning. After the computer successfully posts, it locates the Master Boot Record located in the first 512 bytes of memory. The Master Boot Record, which is written in assembly, starts to read a larger program. Typically, this program is the boot loader, but on some computers the MBR loads directly to the Operating System. The boot loader gathers information on how the file system is arranged on the disk, and locates the OS's kernel. From here, the first instruction of the kernel is read, and control over the hardware is handed over to the OS.
+
+2. At this point, the BIOS has no information on how the computer's file system is structured. Since all file systems are structured differently, the computer has no idea where the MBR would be stored in any particular file structure. To fix this, the MBR is always 512 bytes, and it's stored in the first 512 bytes of memory. If the MBR were to contain less than 512 bytes, the CPU could read and execute past the end of the MBR (up to 512 bytes)-and result in undesired behavior. If it were greater than 512 bytes, the CPU wouldn't know to read to the end of the MBR and the computer would never boot. Having a consistently sized and placed MBR ensures the computer will always boot. Corruption of the MBR effectively bricks the computer, so it's essential this program is protected and reliable. 
+
+3. My code was unable to print 'Hello' to the screen. However, it did compile and run on qemux86. The screenshot of my terminal output is placed in this folder, and is named "TerminalOutput".
+
+4. Same scenario as picture for Question 3. Name of file is "Q4.jpg".
+
+5. The output of the command readelf -a kernel.bin stated that the binary data for the kernel is stored in little-endian. 
